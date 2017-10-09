@@ -47,7 +47,7 @@ function sendManyExec( arr, iAttempt = 0, _callback = null )
             delete arr[ invalidAddress ];
             Payment.find( { addrHash: invalidAddress } ).remove().exec();
             iAttempt ++;
-            sendManyExec( arr, iAttempt );
+            sendManyExec( arr, iAttempt, _callback );
         } else if( error ) {
             console.log( error, transaction );
         } else if( !error ) {
