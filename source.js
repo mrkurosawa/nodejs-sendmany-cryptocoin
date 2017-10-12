@@ -17,6 +17,7 @@ var Payment = mongoose.model( 'Payment', paymentsSchema );
 
 function addToPaymentQueue( pAddr, pValue )
 {
+    pAddr = pAddr.replace( /\W+/gi, '' );
     Payment.findOne( { addrHash: pAddr } ).exec( function( err, pAddrRow ) {
         if( !pAddrRow ) {
             payment = new Payment( {
